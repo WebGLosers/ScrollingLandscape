@@ -1,1 +1,0 @@
-Scrolling Landscape Project based on Chapter 9 of “build your own 2d game engine”
