@@ -36,6 +36,11 @@ class MyGame extends engine.Scene {
         this.mDrawTexture = false;
         this.mDrawBounds = false;
         this.mDrawRigidShape = true;
+
+
+    // ---------OUR PROJECT-------------------
+        this.mBg = null;
+        this.mBg2 = null;
     }
 
 
