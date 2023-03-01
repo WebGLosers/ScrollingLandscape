@@ -14,6 +14,11 @@ class Background extends engine.GameObject {
         
         // Gets the direction for the background to move in
         this.mDirection = direction;
+        this.isAutomatic = false;
+    }
+
+    update() {
+        this.isAutomatic();
     }
 
     setTint() {
@@ -30,6 +35,12 @@ class Background extends engine.GameObject {
 
     setSpeed() {
 
+    }
+
+    isAutomatic() {
+        if (engine.input.isKeyClicked(engine.input.keys.P)) {
+            this.isAutomatic = !this.isAutomatic;
+        }
     }
 }
 

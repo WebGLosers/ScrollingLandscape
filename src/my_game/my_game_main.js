@@ -16,6 +16,9 @@ class MyGame extends engine.Scene {
         this.kWallTexture = "assets/wall.png";
         this.kTargetTexture = "assets/target.png";
 
+        this.kBg = "assets/bg.png";
+        this.kBg2 = "assets/target.png"; // temporary for figuring out project
+
         // The camera to view the scene
         this.mCamera = null;
 
@@ -43,13 +46,14 @@ class MyGame extends engine.Scene {
         this.mBg2 = null;
     }
 
-
-
     load() {
         engine.texture.load(this.kMinionSprite);
         engine.texture.load(this.kPlatformTexture);
         engine.texture.load(this.kWallTexture);
         engine.texture.load(this.kTargetTexture);
+
+        engine.texture.load(this.kBg);
+        engine.texture.load(this.kBg2);
     }
 
     unload() {
@@ -57,6 +61,8 @@ class MyGame extends engine.Scene {
         engine.texture.unload(this.kPlatformTexture);
         engine.texture.unload(this.kWallTexture);
         engine.texture.unload(this.kTargetTexture);
+        engine.texture.unload(this.kBg);
+        engine.texture.unload(this.kBg2);
     }
 
     init() {
@@ -96,6 +102,25 @@ class MyGame extends engine.Scene {
         this.mShapeMsg.setColor([0, 0, 0, 1]);
         this.mShapeMsg.getXform().setPosition(5, 73);
         this.mShapeMsg.setTextHeight(2.5);
+
+        let bgR = new engine.SpriteRenderable(this.kBg);
+        bgR.setElementPixelPositions(0, 1024, 0, 1024);
+        bgR.getXform().setSize(200, 150);
+        bgR.getXform().setPosition(100, 75);
+        this.mBg = new engine.GameObject(bgR);
+
+        let bgR2 = new engine.SpriteRenderable(this.kBg2);
+        bgR2.setElementPixelPositions(0, 1024, 0, 1024);
+        bgR2.getXform().setSize(50, 50);
+        bgR2.getXform().setPosition(80, 75);
+        this.mBg2 = new engine.GameObject(bgR2);
+    }
+
+    _drawCamera(camera) {
+        camera.setViewAndCameraMatrix();
+        this.mBg.draw(camera);
+        this.mMsg.draw(camera);
+        this.mBg2.draw(camera);
     }
 
     // This is the draw function, make sure to setup proper drawing environment, and more
@@ -104,21 +129,7 @@ class MyGame extends engine.Scene {
         // Step A: clear the canvas
         engine.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
 
-        this.mCamera.setViewAndCameraMatrix();
-
-        this.mPlatforms.draw(this.mCamera);
-        this.mAllObjs.draw(this.mCamera);
-
-        // for now draw these ...
-        if (this.mCollisionInfos !== null) {
-        for (let i = 0; i < this.mCollisionInfos.length; i++)
-            this.mCollisionInfos[i].draw(this.mCamera);
-        this.mCollisionInfos = [];
-        }
-
-        this.mTarget.draw(this.mCamera);
-        this.mMsg.draw(this.mCamera);   // draw last
-        this.mShapeMsg.draw(this.mCamera);
+        this._drawCamera(this.mCamera);
     }
 
     incShapeSize(obj, delta) {
