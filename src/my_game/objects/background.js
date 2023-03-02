@@ -1,8 +1,8 @@
 "use strict"
 
-import engine from "../../engine"
+import GameObject from "../../engine/game_objects/game_object";
 
-class Background extends engine.GameObject {
+class Background extends GameObject {
     constructor(spriteTexture, direction) {
         this.kDelta = 0;
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
@@ -15,10 +15,14 @@ class Background extends engine.GameObject {
         // Gets the direction for the background to move in
         this.mDirection = direction;
         this.isAutomatic = false;
+
+        // Allows for infinite scrolling
+        this.isTiled = true;
     }
 
     update() {
         this.isAutomatic();
+        this.mRenderComponent.getXform().incXPosBy(0.1);
     }
 
     setTint() {
