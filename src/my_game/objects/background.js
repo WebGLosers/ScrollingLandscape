@@ -24,7 +24,6 @@ class Background extends engine.GameObject {
     }
 
     update() {
-        this.isAutomatic();
         this.mRenderComponent.getXform().incXPosBy(0.1);
     }
 

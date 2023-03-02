@@ -41,6 +41,8 @@ class MyGame extends engine.Scene {
         this.mDrawBounds = false;
         this.mDrawRigidShape = true;
 
+        this.mHeroCam = null;
+
 
     // ---------OUR PROJECT-------------------
         this.mBg = null;
@@ -77,6 +79,14 @@ class MyGame extends engine.Scene {
         // sets the background to gray
         engine.defaultResources.setGlobalAmbientIntensity(3);
 
+        // this.mHeroCam = new engine.Camera(
+        //     vec2.fromValues(20, 30.5), // position of the camera
+        //     14,                        // width of camera
+        //     [0, 420, 300, 300],        // viewport (orgX, orgY, width, height)
+        //     2
+        // );
+        // this.mHeroCam.setBackgroundColor([0.5, 0.5, 0.9, 1]);
+
         this.mHero = new Hero(this.kMinionSprite);
 
         this.mMsg = new engine.FontRenderable("Status Message");
@@ -103,6 +113,7 @@ class MyGame extends engine.Scene {
         this.mMsg.draw(camera);
         this.mBg.draw(camera);
         this.mBg2.draw(camera);
+        this.mHero.draw(camera);
     }
 
     // This is the draw function, make sure to setup proper drawing environment, and more
@@ -124,26 +135,29 @@ class MyGame extends engine.Scene {
     update() {
         let msg = "";
 
-        if (engine.input.isKeyClicked(engine.input.keys.P)) {
-            engine.physics.togglePositionalCorrection();
-        }
-        if (engine.input.isKeyClicked(engine.input.keys.V)) {
-            engine.physics.toggleHasMotion();
-        }
-        if (engine.input.isKeyClicked(engine.input.keys.H)) {
-            this.randomizeVelocity();
-        }
+        this.mHero.update();
+        this.mBg.update();
 
-        if (engine.input.isKeyClicked(engine.input.keys.Left)) {
-            this.mCurrentObj -= 1;
-            if (this.mCurrentObj < 0)
-                this.mCurrentObj = this.mAllObjs.size() - 1;
-        }
-        if (engine.input.isKeyClicked(engine.input.keys.Right)) {
-            this.mCurrentObj += 1;
-            if (this.mCurrentObj >= this.mAllObjs.size())
-                this.mCurrentObj = 0;
-        }
+        // if (engine.input.isKeyClicked(engine.input.keys.P)) {
+        //     engine.physics.togglePositionalCorrection();
+        // }
+        // if (engine.input.isKeyClicked(engine.input.keys.V)) {
+        //     engine.physics.toggleHasMotion();
+        // }
+        // if (engine.input.isKeyClicked(engine.input.keys.H)) {
+        //     this.randomizeVelocity();
+        // }
+
+        // if (engine.input.isKeyClicked(engine.input.keys.Left)) {
+        //     this.mCurrentObj -= 1;
+        //     if (this.mCurrentObj < 0)
+        //         this.mCurrentObj = this.mAllObjs.size() - 1;
+        // }
+        // if (engine.input.isKeyClicked(engine.input.keys.Right)) {
+        //     this.mCurrentObj += 1;
+        //     if (this.mCurrentObj >= this.mAllObjs.size())
+        //         this.mCurrentObj = 0;
+        // }
 
         if (this.mDrawCollisionInfo)
             this.mCollisionInfos = [];
