@@ -137,6 +137,15 @@ class MyGame extends engine.Scene {
         this.mHero.update();
         this.mBg.update();
 
+        if (engine.input.isKeyClicked(engine.input.keys.Up)) {
+            this.mBg.kDelta += 0.1;
+        }
+
+        if (engine.input.isKeyClicked(engine.input.keys.Down)) {
+            this.mBg.kDelta -= 0.1;
+        }
+
+
         // if (engine.input.isKeyClicked(engine.input.keys.P)) {
         //     engine.physics.togglePositionalCorrection();
         // }

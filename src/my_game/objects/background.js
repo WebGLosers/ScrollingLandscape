@@ -6,7 +6,7 @@ import engine from "../../engine/index.js";
 class Background extends engine.GameObject {
     constructor(spriteTexture, direction) {
         super();
-        this.kDelta = 0;
+        this.kDelta = 0.1;
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
         this.mRenderComponent.setColor([1, 1, 1, 0]);
 
@@ -27,13 +27,13 @@ class Background extends engine.GameObject {
         // NOTE: We can change this so that if they click left or right
         // it just changes the direction(?)
         if (this.mDirection == "left") {
-            this.mRenderComponent.getXform().incXPosBy(-0.1);
+            this.mRenderComponent.getXform().incXPosBy(-this.kDelta);
         } else if (this.mDirection == "right") {
-            this.mRenderComponent.getXform().incXPosBy(0.1);
+            this.mRenderComponent.getXform().incXPosBy(this.kDelta);
         } else if (this.mDirection == "up") {
-            this.mRenderComponent.getXform().incYPosBy(0.1);
+            this.mRenderComponent.getXform().incYPosBy(this.kDelta);
         } else {
-            this.mRenderComponent.getXform().incYPosBy(-0.1);
+            this.mRenderComponent.getXform().incYPosBy(-this.kDelta);
         }
     }
 
