@@ -54,7 +54,6 @@ class MyGame extends engine.Scene {
         engine.texture.load(this.kPlatformTexture);
         engine.texture.load(this.kWallTexture);
         engine.texture.load(this.kTargetTexture);
-
         engine.texture.load(this.kBg);
         engine.texture.load(this.kBg2);
     }

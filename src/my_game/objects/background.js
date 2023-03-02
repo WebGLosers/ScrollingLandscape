@@ -4,7 +4,7 @@ import engine from "../../engine/index.js";
 
 
 class Background extends engine.GameObject {
-    constructor(spriteTexture) {
+    constructor(spriteTexture, direction) {
         super();
         this.kDelta = 0;
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
@@ -16,7 +16,7 @@ class Background extends engine.GameObject {
         this.mRenderComponent.getXform().setSize(200, 150);
         
         // Gets the direction for the background to move in
-        // this.mDirection = direction;
+        this.mDirection = direction;
         this.isAutomatic = false;
 
         // Allows for infinite scrolling
@@ -24,7 +24,17 @@ class Background extends engine.GameObject {
     }
 
     update() {
-        this.mRenderComponent.getXform().incXPosBy(0.1);
+        // NOTE: We can change this so that if they click left or right
+        // it just changes the direction(?)
+        if (this.mDirection == "left") {
+            this.mRenderComponent.getXform().incXPosBy(-0.1);
+        } else if (this.mDirection == "right") {
+            this.mRenderComponent.getXform().incXPosBy(0.1);
+        } else if (this.mDirection == "up") {
+            this.mRenderComponent.getXform().incYPosBy(0.1);
+        } else {
+            this.mRenderComponent.getXform().incYPosBy(-0.1);
+        }
     }
 
     // This code was taken from Chapter 11.1 tile_game_object.js
