@@ -7,6 +7,7 @@
 import engine from "../engine/index.js";
 import Hero from "./objects/hero.js";
 import Minion from "./objects/minion.js";
+import Background from "./objects/background.js";
 
 class MyGame extends engine.Scene {
     constructor() {
@@ -83,15 +84,16 @@ class MyGame extends engine.Scene {
         this.mMsg.getXform().setPosition(5, 7);
         this.mMsg.setTextHeight(3);
 
-        let bgR = new engine.SpriteRenderable(this.kBg);
-        bgR.setElementPixelPositions(0, 1024, 0, 1024);
-        bgR.getXform().setSize(200, 150);
-        bgR.getXform().setPosition(100, 75);
-        this.mBg = new engine.GameObject(bgR);
+        // let bgR = new engine.SpriteRenderable(this.kBg);
+        // bgR.setElementPixelPositions(0, 1024, 0, 1024);
+        // bgR.getXform().setSize(200, 150);
+        // bgR.getXform().setPosition(100, 75);
+        // this.mBg = new engine.GameObject(bgR);
+        this.mBg = new Background(this.kBg);
 
         let bgR2 = new engine.SpriteRenderable(this.kBg2);
         bgR2.setElementPixelPositions(0, 1024, 0, 1024);
-        bgR2.getXform().setSize(50, 50);
+        bgR2.getXform().setSize(40, 50);
         bgR2.getXform().setPosition(80, 75);
         this.mBg2 = new engine.GameObject(bgR2);
     }

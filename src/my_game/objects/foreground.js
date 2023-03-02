@@ -5,6 +5,7 @@ import Background from "./background";
 
 class Foreground extends Background {
     constructor(spriteTexture, direction) {
+        super();
         this.kDelta = 0;
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
         this.mRenderComponent.setColor([1, 1, 1, 0]);
