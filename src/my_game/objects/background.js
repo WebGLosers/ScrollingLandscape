@@ -6,38 +6,40 @@ import engine from "../../engine/index.js";
 class Background extends engine.GameObject {
     constructor(spriteTexture, direction) {
         super();
-        this.kDelta = 0.1;
+
+        // Sets the speed of movement for renderable
+        this.mSpeed = 0.1;
+        
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
         this.mRenderComponent.setColor([1, 1, 1, 0]);
-
-        // Need to change
         this.mRenderComponent.setElementPixelPositions(0, 1024, 0, 1024);
         this.mRenderComponent.getXform().setPosition(100, 75);
         this.mRenderComponent.getXform().setSize(200, 150);
         
         // Gets the direction for the background to move in
         this.mDirection = direction;
-        this.isAutomatic = false;
-
-        // Allows for infinite scrolling
-        this.isTiled = true;
     }
 
     update() {
-        // NOTE: We can change this so that if they click left or right
-        // it just changes the direction(?)
+        this.movement();
+        this.setSpeed();
+        this.setDirection();
+    }
+
+    movement() {
         if (this.mDirection == "left") {
-            this.mRenderComponent.getXform().incXPosBy(-this.kDelta);
+            this.mRenderComponent.getXform().incXPosBy(-this.mSpeed);
         } else if (this.mDirection == "right") {
-            this.mRenderComponent.getXform().incXPosBy(this.kDelta);
+            this.mRenderComponent.getXform().incXPosBy(this.mSpeed);
         } else if (this.mDirection == "up") {
-            this.mRenderComponent.getXform().incYPosBy(this.kDelta);
-        } else {
-            this.mRenderComponent.getXform().incYPosBy(-this.kDelta);
+            this.mRenderComponent.getXform().incYPosBy(this.mSpeed);
+        } else { // this.mDirection == "down"
+            this.mRenderComponent.getXform().incYPosBy(-this.mSpeed);
         }
     }
 
-    // This code was taken from Chapter 11.1 tile_game_object.js
+    // This code was taken and referenced from Chapter 11.1 tile_game_object.js
+    // This code allows for the illusion of infinite scrolling
     drawInfinite(camera) {
         // Step A: Compute the positions and dimensions of tiling object.
         let xf = this.getXform();
@@ -110,14 +112,6 @@ class Background extends engine.GameObject {
         pos[1] = sY;
     }
 
-    setTiled(tile) {
-        this.isTiled = tile;
-    }
-
-    shouldTile() {
-        return this.isTiled;
-    }
-
     setTint() {
 
     }
@@ -126,8 +120,32 @@ class Background extends engine.GameObject {
         this.mRenderComponent = new engine.SpriteRenderable(image);
     }
 
-    setSpeed(speed) {
-        this.kDelta = speed;
+    setSpeed() {
+        if (engine.input.isKeyClicked(engine.input.keys.Up)) {
+            this.mSpeed += 0.1;
+        }
+
+        if (engine.input.isKeyClicked(engine.input.keys.Down)) {
+            this.mSpeed -= 0.1;
+        }
+    }
+
+    setDirection() {
+        if (engine.input.isKeyClicked(engine.input.keys.A)) {
+            this.mDirection = "left";
+        }
+
+        if (engine.input.isKeyClicked(engine.input.keys.W)) {
+            this.mDirection = "up";
+        }
+
+        if (engine.input.isKeyClicked(engine.input.keys.D)) {
+            this.mDirection = "right";
+        }
+
+        if (engine.input.isKeyClicked(engine.input.keys.S)) {
+            this.mDirection = "down";
+        }
     }
 
     isAutomatic() {
@@ -138,12 +156,9 @@ class Background extends engine.GameObject {
 
     draw(aCamera) {
         if (this.isVisible() && (this.mDrawRenderable)) {
-            if (this.shouldTile()) {
-                // find out where we should be drawing   
-                this.drawInfinite(aCamera);
-            } else {
-                this.mRenderComponent.draw(aCamera);
-            }
+            this.drawInfinite(aCamera);
+        } else {
+            this.mRenderComponent.draw(aCamera);
         }
     }
 

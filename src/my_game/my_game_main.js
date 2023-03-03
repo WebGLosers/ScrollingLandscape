@@ -93,13 +93,9 @@ class MyGame extends engine.Scene {
         this.mMsg.getXform().setPosition(5, 7);
         this.mMsg.setTextHeight(3);
 
-        // let bgR = new engine.SpriteRenderable(this.kBg);
-        // bgR.setElementPixelPositions(0, 1024, 0, 1024);
-        // bgR.getXform().setSize(200, 150);
-        // bgR.getXform().setPosition(100, 75);
-        // this.mBg = new engine.GameObject(bgR);
-        this.mBg = new Background(this.kBg);
+        this.mBg = new Background(this.kBg, "down");
 
+        // Temporary code
         let bgR2 = new engine.SpriteRenderable(this.kBg2);
         bgR2.setElementPixelPositions(0, 1024, 0, 1024);
         bgR2.getXform().setSize(40, 50);
@@ -136,15 +132,6 @@ class MyGame extends engine.Scene {
 
         this.mHero.update();
         this.mBg.update();
-
-        if (engine.input.isKeyClicked(engine.input.keys.Up)) {
-            this.mBg.kDelta += 0.1;
-        }
-
-        if (engine.input.isKeyClicked(engine.input.keys.Down)) {
-            this.mBg.kDelta -= 0.1;
-        }
-
 
         // if (engine.input.isKeyClicked(engine.input.keys.P)) {
         //     engine.physics.togglePositionalCorrection();
