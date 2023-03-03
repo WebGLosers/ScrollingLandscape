@@ -85,7 +85,7 @@ class MyGame extends engine.Scene {
         this.mMsg.getXform().setPosition(5, 7);
         this.mMsg.setTextHeight(3);
 
-        this.mBg = new Background(this.kBg, "down");
+        this.mBg = new Background(this.kBg, "down", 0.1);
 
         // Temporary code
         let bgR2 = new engine.SpriteRenderable(this.kBg2);

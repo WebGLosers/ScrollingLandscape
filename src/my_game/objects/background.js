@@ -4,11 +4,11 @@ import engine from "../../engine/index.js";
 
 
 class Background extends engine.GameObject {
-    constructor(spriteTexture, direction) {
+    constructor(spriteTexture, direction, speed) {
         super();
 
         // Sets the speed of movement for renderable
-        this.mSpeed = 0.1;
+        this.mSpeed = speed;
         
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
         this.mRenderComponent.setColor([1, 1, 1, 0]);
