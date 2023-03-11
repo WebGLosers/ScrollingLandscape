@@ -17,7 +17,8 @@ class MyGame extends engine.Scene {
         this.kWallTexture = "assets/wall.png";
         this.kTargetTexture = "assets/target.png";
 
-        this.kBg = "assets/clouds_and_sky.jpg";
+        this.kBg = "assets/starry_night.jpg";
+        //this.kBg = "assets/clouds_and_sky.jpg";
         this.kBg2 = "assets/cloud.png"; // temporary for figuring out project
 
         // The camera to view the scene
@@ -85,13 +86,15 @@ class MyGame extends engine.Scene {
         this.mMsg.getXform().setPosition(5, 7);
         this.mMsg.setTextHeight(3);
 
-        this.mBg = new Background(this.kBg, "down", 0.1);
+        // Takes in the following arguments:
+        // image asset, direction of movement, speed, x dimension of image, y dimension of image
+        this.mBg = new Background(this.kBg, "right", 0.1, 1960, 1024);
 
         // Temporary code
         let bgR2 = new engine.SpriteRenderable(this.kBg2);
-        bgR2.setElementPixelPositions(0, 1024, 0, 1024);
-        bgR2.getXform().setSize(40, 50);
-        bgR2.getXform().setPosition(80, 75);
+        bgR2.setElementPixelPositions(0, 704, 0, 292);
+        bgR2.getXform().setSize(30, 20);
+        bgR2.getXform().setPosition(50, 50);
         this.mBg2 = new engine.GameObject(bgR2);
     }
 
