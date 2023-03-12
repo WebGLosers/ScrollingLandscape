@@ -17,6 +17,7 @@ class MyGame extends engine.Scene {
         this.kWallTexture = "assets/wall.png";
         this.kTargetTexture = "assets/target.png";
 
+        //this.kBg = "assets/pokemon-sky.jpg";
         this.kBg = "assets/starry_night.jpg";
         //this.kBg = "assets/clouds_and_sky.jpg";
         this.kBg2 = "assets/cloud.png"; // temporary for figuring out project
@@ -88,6 +89,7 @@ class MyGame extends engine.Scene {
 
         // Takes in the following arguments:
         // image asset, direction of movement, speed, x dimension of image, y dimension of image
+        //this.mBg = new Background(this.kBg, "right", 0.1, 728, 455);
         this.mBg = new Background(this.kBg, "right", 0.1, 1960, 1024);
 
         // Temporary code
