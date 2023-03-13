@@ -13,8 +13,8 @@ class Background extends engine.GameObject {
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
         this.mRenderComponent.setColor([1, 1, 1, 0]);
         this.mRenderComponent.setElementPixelPositions(0, width, 0, height);
-        this.mRenderComponent.getXform().setPosition(100, 75);
-        this.mRenderComponent.getXform().setSize(200, 150);
+        this.mRenderComponent.getXform().setPosition(100, 50);
+        this.mRenderComponent.getXform().setSize(100, 95);
         
         // Gets the direction for the background to move in
         this.mDirection = direction;
