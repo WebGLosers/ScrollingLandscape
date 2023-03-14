@@ -74,7 +74,7 @@ class MyGameTwo extends engine.Scene {
         //cloud 3
         this.mBg4 = new Background(this.kBg4, "up", .4, 4096, 4096);
 
-        this.mBg5 = new Background(this.kBg5, "up", .4, 4096, 4096);
+        this.mBg5 = new Background(this.kBg5, "up", .5, 4096, 4096);
         
     }
 
