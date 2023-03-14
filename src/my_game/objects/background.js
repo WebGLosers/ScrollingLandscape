@@ -114,10 +114,6 @@ class Background extends engine.GameObject {
         pos[1] = sY;
     }
 
-    setNewBackgroundImage(image) {
-        this.mRenderComponent = new engine.SpriteRenderable(image);
-    }
-
     setSpeed() {
         if (engine.input.isKeyClicked(engine.input.keys.Up)) {
             this.mSpeed += 0.1;
