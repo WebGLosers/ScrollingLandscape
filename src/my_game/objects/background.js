@@ -4,7 +4,7 @@ import engine from "../../engine/index.js";
 
 
 class Background extends engine.GameObject {
-    constructor(spriteTexture, direction, speed) {
+    constructor(spriteTexture, direction, speed, width, height) {
         super();
 
         // Sets the speed of movement for renderable
@@ -12,12 +12,14 @@ class Background extends engine.GameObject {
         
         this.mRenderComponent = new engine.SpriteRenderable(spriteTexture);
         this.mRenderComponent.setColor([1, 1, 1, 0]);
-        this.mRenderComponent.setElementPixelPositions(0, 1024, 0, 1024);
-        this.mRenderComponent.getXform().setPosition(100, 75);
-        this.mRenderComponent.getXform().setSize(200, 150);
+        this.mRenderComponent.setElementPixelPositions(0, width, 0, height);
+        this.mRenderComponent.getXform().setPosition(100, 50);
+        this.mRenderComponent.getXform().setSize(100, 95);
         
         // Gets the direction for the background to move in
         this.mDirection = direction;
+        this.mVertical = true;
+        this.mHorizontal = true;
     }
 
     update() {
@@ -131,19 +133,19 @@ class Background extends engine.GameObject {
     }
 
     setDirection() {
-        if (engine.input.isKeyClicked(engine.input.keys.A)) {
+        if (engine.input.isKeyClicked(engine.input.keys.A) && this.mHorizontal) {
             this.mDirection = "left";
         }
 
-        if (engine.input.isKeyClicked(engine.input.keys.W)) {
+        if (engine.input.isKeyClicked(engine.input.keys.W) && this.mVertical) {
             this.mDirection = "up";
         }
 
-        if (engine.input.isKeyClicked(engine.input.keys.D)) {
+        if (engine.input.isKeyClicked(engine.input.keys.D) && this.mHorizontal) {
             this.mDirection = "right";
         }
 
-        if (engine.input.isKeyClicked(engine.input.keys.S)) {
+        if (engine.input.isKeyClicked(engine.input.keys.S) && this.mVertical) {
             this.mDirection = "down";
         }
     }
@@ -160,6 +162,14 @@ class Background extends engine.GameObject {
         } else {
             this.mRenderComponent.draw(aCamera);
         }
+    }
+
+    setHorizontal(h){
+        this.mHorizontal = h;
+    }
+
+    setVertical(v){
+        this.mVertical = v;
     }
 
 }
