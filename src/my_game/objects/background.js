@@ -114,10 +114,6 @@ class Background extends engine.GameObject {
         pos[1] = sY;
     }
 
-    setTint() {
-
-    }
-
     setNewBackgroundImage(image) {
         this.mRenderComponent = new engine.SpriteRenderable(image);
     }
