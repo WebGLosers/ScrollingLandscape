@@ -18,6 +18,8 @@ class Background extends engine.GameObject {
         
         // Gets the direction for the background to move in
         this.mDirection = direction;
+        this.mVertical = true;
+        this.mHorizontal = true;
     }
 
     update() {
@@ -131,19 +133,19 @@ class Background extends engine.GameObject {
     }
 
     setDirection() {
-        if (engine.input.isKeyClicked(engine.input.keys.A)) {
+        if (engine.input.isKeyClicked(engine.input.keys.A) && this.mHorizontal) {
             this.mDirection = "left";
         }
 
-        if (engine.input.isKeyClicked(engine.input.keys.W)) {
+        if (engine.input.isKeyClicked(engine.input.keys.W) && this.mVertical) {
             this.mDirection = "up";
         }
 
-        if (engine.input.isKeyClicked(engine.input.keys.D)) {
+        if (engine.input.isKeyClicked(engine.input.keys.D) && this.mHorizontal) {
             this.mDirection = "right";
         }
 
-        if (engine.input.isKeyClicked(engine.input.keys.S)) {
+        if (engine.input.isKeyClicked(engine.input.keys.S) && this.mVertical) {
             this.mDirection = "down";
         }
     }
@@ -160,6 +162,14 @@ class Background extends engine.GameObject {
         } else {
             this.mRenderComponent.draw(aCamera);
         }
+    }
+
+    setHorizontal(h){
+        this.mHorizontal = h;
+    }
+
+    setVertical(v){
+        this.mVertical = v;
     }
 
 }

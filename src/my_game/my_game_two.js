@@ -8,23 +8,21 @@ import engine from "../engine/index.js";
 import Hero from "./objects/hero.js";
 import Minion from "./objects/minion.js";
 import Background from "./objects/background.js";
-import MyGameTwo from "./my_game_two.js";
+import MyGame from "./my_game_main.js";
 
-class MyGame extends engine.Scene {
+class MyGameTwo extends engine.Scene {
     constructor() {
         super();
 
+        this.kBg = "assets/Nebula.png";
+        this.kBg2 = "assets/stars1.png";
+        this.kBg3 = "assets/stars2.png";
+        this.kBg4 = "assets/stars3.png";
+        this.kBg5 = "assets/stars4.png";
 
-        this.kBg = "assets/sky.png";
-        this.kBg2 = "assets/clouds_bg.png";
-        this.kBg3 = "assets/glacial_mountains.png";
-        this.kBg4 = "assets/clouds_mg_3.png";
-        this.kBg5 = "assets/clouds_mg_2.png";
-        this.kBg6 = "assets/clouds_mg_1.png";
 
         // The camera to view the scene
         this.mCamera = null;
-
 
 
     // ---------OUR PROJECT-------------------
@@ -42,7 +40,6 @@ class MyGame extends engine.Scene {
         engine.texture.load(this.kBg3);
         engine.texture.load(this.kBg4);
         engine.texture.load(this.kBg5);
-        engine.texture.load(this.kBg6);
     }
 
     unload() {
@@ -51,7 +48,7 @@ class MyGame extends engine.Scene {
         engine.texture.unload(this.kBg3);
         engine.texture.unload(this.kBg4);
         engine.texture.unload(this.kBg5);
-        engine.texture.unload(this.kBg6);
+
         
     }
 
@@ -62,29 +59,22 @@ class MyGame extends engine.Scene {
             100,                     // width of camera
             [0, 0, 1200, 900]         // viewport (orgX, orgY, width, height)
         );
-        this.mCamera.setBackgroundColor([0.8, 0.8, 0.8, 1]);
+        this.mCamera.setBackgroundColor([0, 0, 0.1, 1]);
         // sets the background to gray
-        engine.defaultResources.setGlobalAmbientIntensity(2.5);
+        engine.defaultResources.setGlobalAmbientIntensity(3.5);
 
 
         //sky
-        this.mBg = new Background(this.kBg, "right", 0.1, 384, 216);
-        this.mBg.setVertical(false);
+        this.mBg = new Background(this.kBg, "up", 0.1, 4096, 4096);
+        this.mBg.setHorizontal(false);
         //clouds
-        this.mBg2 = new Background(this.kBg2, "right", 0.2, 384, 216);
-        this.mBg2.setVertical(false);
+        this.mBg2 = new Background(this.kBg2, "up", 0.2, 4096, 4096);
         //mountains
-        this.mBg3 = new Background(this.kBg3, "right", .3, 384, 216);
-        this.mBg3.setVertical(false);
+        this.mBg3 = new Background(this.kBg3, "up", .3, 4096, 4096);
         //cloud 3
-        this.mBg4 = new Background(this.kBg4, "right", .4, 384, 216);
-        this.mBg4.setVertical(false);
-        //cloud 2
-        this.mBg5 = new Background(this.kBg5, "right", .5, 384, 216);
-        this.mBg5.setVertical(false);
-        //cloud 1 
-        this.mBg6 = new Background(this.kBg6, "right", .6, 384, 216);
-        this.mBg6.setVertical(false);
+        this.mBg4 = new Background(this.kBg4, "up", .4, 4096, 4096);
+
+        this.mBg5 = new Background(this.kBg5, "up", .4, 4096, 4096);
         
     }
 
@@ -95,14 +85,14 @@ class MyGame extends engine.Scene {
         this.mBg3.draw(camera);
         this.mBg4.draw(camera);
         this.mBg5.draw(camera);
-        this.mBg6.draw(camera);
+
     }
 
     // This is the draw function, make sure to setup proper drawing environment, and more
     // importantly, make sure to _NOT_ change any state.
     draw() {
         // Step A: clear the canvas
-        engine.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
+        engine.clearCanvas([0, 0, 0.1, 1.0]); // clear to light gray
 
         this._drawCamera(this.mCamera);
     }
@@ -116,8 +106,6 @@ class MyGame extends engine.Scene {
         this.mBg3.update();
         this.mBg4.update();
         this.mBg5.update();
-        this.mBg6.update();
-
 
         if(engine.input.isKeyClicked(engine.input.keys.N) === true){
             this.next();
@@ -129,10 +117,10 @@ class MyGame extends engine.Scene {
 
         // next scene to run
           
-        let nextLevel = new MyGameTwo();  // next level to be loaded
+        let nextLevel = new MyGame();  // next level to be loaded
         nextLevel.start();
     }
 
 }
 
-export default MyGame;
+export default MyGameTwo;
