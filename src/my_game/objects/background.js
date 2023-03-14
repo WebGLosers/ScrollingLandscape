@@ -35,7 +35,7 @@ class Background extends engine.GameObject {
             this.mRenderComponent.getXform().incYPosBy(-this.mSpeed); 
         } else if (this.mDirection == "up") {
             this.mRenderComponent.getXform().incYPosBy(this.mSpeed);
-        } else { // this.mDirection == "down"
+        } else { // this.mDirection == "right"
             this.mRenderComponent.getXform().incXPosBy(this.mSpeed);
         }
     }
