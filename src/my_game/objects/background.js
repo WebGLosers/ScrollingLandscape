@@ -142,12 +142,6 @@ class Background extends engine.GameObject {
         }
     }
 
-    isAutomatic() {
-        if (engine.input.isKeyClicked(engine.input.keys.P)) {
-            this.isAutomatic = !this.isAutomatic;
-        }
-    }
-
     draw(aCamera) {
         if (this.isVisible() && (this.mDrawRenderable)) {
             this.drawInfinite(aCamera);
