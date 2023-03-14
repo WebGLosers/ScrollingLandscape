@@ -65,16 +65,16 @@ class MyGameTwo extends engine.Scene {
 
 
         //sky
-        this.mBg = new Background(this.kBg, "up", 0.1, 4096, 4096);
+        this.mBg = new Background(this.kBg, "up", 0.1, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         this.mBg.setHorizontal(false);
         //clouds
-        this.mBg2 = new Background(this.kBg2, "up", 0.2, 4096, 4096);
+        this.mBg2 = new Background(this.kBg2, "up", 0.2, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         //mountains
-        this.mBg3 = new Background(this.kBg3, "up", .3, 4096, 4096);
+        this.mBg3 = new Background(this.kBg3, "up", .3, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         //cloud 3
-        this.mBg4 = new Background(this.kBg4, "up", .4, 4096, 4096);
+        this.mBg4 = new Background(this.kBg4, "up", .4, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
 
-        this.mBg5 = new Background(this.kBg5, "up", .5, 4096, 4096);
+        this.mBg5 = new Background(this.kBg5, "up", .5, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         
     }
 

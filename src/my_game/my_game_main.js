@@ -68,22 +68,22 @@ class MyGame extends engine.Scene {
 
 
         //sky
-        this.mBg = new Background(this.kBg, "right", 0.1, 384, 216);
+        this.mBg = new Background(this.kBg, "right", 0.1, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         this.mBg.setVertical(false);
         //clouds
-        this.mBg2 = new Background(this.kBg2, "right", 0.2, 384, 216);
+        this.mBg2 = new Background(this.kBg2, "right", 0.2, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         this.mBg2.setVertical(false);
         //mountains
-        this.mBg3 = new Background(this.kBg3, "right", .3, 384, 216);
+        this.mBg3 = new Background(this.kBg3, "right", .3, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         this.mBg3.setVertical(false);
         //cloud 3
-        this.mBg4 = new Background(this.kBg4, "right", .4, 384, 216);
+        this.mBg4 = new Background(this.kBg4, "right", .4, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         this.mBg4.setVertical(false);
         //cloud 2
-        this.mBg5 = new Background(this.kBg5, "right", .5, 384, 216);
+        this.mBg5 = new Background(this.kBg5, "right", .5, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         this.mBg5.setVertical(false);
         //cloud 1 
-        this.mBg6 = new Background(this.kBg6, "right", .6, 384, 216);
+        this.mBg6 = new Background(this.kBg6, "right", .6, this.mCamera.getWCCenter(), this.mCamera.getWCWidth(), this.mCamera.getWCHeight());
         this.mBg6.setVertical(false);
         
     }
